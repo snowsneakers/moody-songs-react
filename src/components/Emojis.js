@@ -7,7 +7,7 @@ const Emojis = ({ setMood, mood }) => {
 
      const getSongs = async () => {
           const res = await fetch(
-               `https://moody-songs-react.herokuapp.com//${mood}`
+               `https://moody-songs-react.herokuapp.com/${mood}`
           );
           const data = await res.json();
           setSongs(data.tracks.trackList);
