@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Card from "./Card";
+import Player from "./Player";
 
 const Emojis = ({ setMood, mood }) => {
      const [songs, setSongs] = useState([]);
@@ -37,7 +37,7 @@ const Emojis = ({ setMood, mood }) => {
 
      return (
           <section>
-               <ul className="w-full flex items-center justify-evenly mx-auto text-4xl md:text-6xl mb-5">
+               <ul className="w-full flex items-center justify-center md:justify-around mx-auto text-4xl md:text-6xl mb-5">
                     <li
                          className="emoji cursor-pointer"
                          title="Angry"
@@ -77,8 +77,9 @@ const Emojis = ({ setMood, mood }) => {
                <div>
                     {songs
                          .filter((song, index) => index === count)
-                         .map((song) => (
-                              <Card
+                         .map((song, index) => (
+                              <Player
+                                   key={index}
                                    song={song}
                                    increment={increment}
                                    decrement={decrement}

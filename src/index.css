@@ -29,7 +29,9 @@
      animation-delay: 0.6s;
 }
 
-.artist {
+.artist,
+.title {
+     height: 65px;
      background: linear-gradient(
           -45deg,
           #3f51b1 0%,
@@ -42,9 +44,9 @@
           #f3a469 87%,
           #f7c978 100%
      );
-     background-size: 400% 400%;
+     background-size: 500%;
      position: relative;
-     background-clip: initial;
+     background-clip: text;
      -webkit-background-clip: text;
      -webkit-text-fill-color: transparent;
      animation: animate 7.5s ease-in-out infinite;
