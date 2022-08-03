@@ -42,10 +42,12 @@ const Card = ({ song, increment, decrement, count, songs }) => {
                                    {count + 1} / {songs.length}
                               </p>
                               <button
-                                   onClick={() => setHidden(true)}
+                                   onClick={() =>
+                                        setHidden((prevState) => !prevState)
+                                   }
                                    className="py-0.5 px-2 bg-gray-300 rounded font-semibold"
                               >
-                                   Show Lyrics
+                                   {hidden ? "Hide" : "Show"} Lyrics
                               </button>
                          </div>
                     </div>

@@ -5,20 +5,17 @@ const Emojis = ({ setMood, mood }) => {
      const [songs, setSongs] = useState([]);
      const [count, setCount] = useState(0);
 
-     const getSongs = async () => {
+     const getSongs = async (emotion) => {
           const res = await fetch(
-               `https://moody-songs-react.herokuapp.com/${mood}`
+               `https://moody-songs-react.herokuapp.com/${emotion}`
           );
           const data = await res.json();
           setSongs(data.tracks.trackList);
      };
 
-     useEffect(() => {
-          getSongs();
-     }, [mood]);
-
      const pickMood = (e) => {
           setMood(e.target.title);
+          getSongs(e.target.title);
           setCount(0);
      };
 
@@ -34,6 +31,8 @@ const Emojis = ({ setMood, mood }) => {
                setCount(songs.length - 1);
           }
      };
+
+     console.log(mood);
 
      return (
           <section>
@@ -74,20 +73,30 @@ const Emojis = ({ setMood, mood }) => {
                          😭
                     </li>
                </ul>
-               <div>
-                    {songs
-                         .filter((song, index) => index === count)
-                         .map((song, index) => (
-                              <Player
-                                   key={index}
-                                   song={song}
-                                   increment={increment}
-                                   decrement={decrement}
-                                   count={count}
-                                   songs={songs}
-                              />
-                         ))}
-               </div>
+               {mood.length ? (
+                    <div>
+                         {songs
+                              .filter((song, index) => index === count)
+                              .map((song, index) => (
+                                   <Player
+                                        key={index}
+                                        song={song}
+                                        increment={increment}
+                                        decrement={decrement}
+                                        count={count}
+                                        songs={songs}
+                                   />
+                              ))}
+                    </div>
+               ) : (
+                    <section>
+                         <p className="font-semibold md:text-4xl text-center">
+                              Welcome! Need a song to complement your mood? Pick
+                              the emoji that represents your mood the best and
+                              enjoy the music!
+                         </p>
+                    </section>
+               )}
           </section>
      );
 };
