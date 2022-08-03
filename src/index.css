@@ -1,13 +1,77 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+     html {
+          font-family: Roboto, system-ui, sans-serif;
+     }
+     body {
+          background: linear-gradient(
+               -45deg,
+               #3f51b1 0%,
+               #5a55ae 13%,
+               #7b5fac 25%,
+               #8f6aae 38%,
+               #a86aa4 50%,
+               #cc6b8e 62%,
+               #f18271 75%,
+               #f3a469 87%,
+               #f7c978 100%
+          );
+          background-size: 400% 400%;
+          position: relative;
+          animation: animate 7.5s ease-in-out infinite;
+     }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.emoji {
+     transition: all 0.3s ease-in-out;
+     animation: emojiSpin 5s ease-in-out infinite;
+     user-select: none;
+}
+
+.emoji:nth-child(2) {
+     animation-delay: 0.5s;
+}
+.emoji:nth-child(4) {
+     animation-delay: 0.25s;
+}
+.emoji:nth-child(5) {
+     animation-delay: 0.6s;
+}
+
+@keyframes emojiSpin {
+     0% {
+          transform: translate(0, 0);
+     }
+     50% {
+          transform: translate(0, -20px);
+     }
+     100% {
+          transform: translate(0, 0);
+     }
+}
+
+@keyframes animate {
+     0% {
+          background-position: 0 50%;
+     }
+     50% {
+          background-position: 100% 50%;
+     }
+     100% {
+          background-position: 0 50%;
+     }
+}
+
+.lyrics {
+     -ms-overflow-style: none; /* IE and Edge */
+     scrollbar-width: none; /* Firefox */
+}
+
+.lyrics::-webkit-scrollbar {
+     display: none;
 }
