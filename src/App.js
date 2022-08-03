@@ -5,7 +5,7 @@ function App() {
      const [mood, setMood] = useState("angry");
      return (
           <section className="min-h-screen flex items-center justify-center app">
-               <div className="w-full md:w-[880px] mx-auto text-yellow-50">
+               <div className="w-full md:w-[880px] mx-auto text-black">
                     <Header mood={mood} />
                     <Emojis setMood={setMood} mood={mood} />
                </div>
