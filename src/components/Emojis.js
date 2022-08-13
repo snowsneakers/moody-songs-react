@@ -4,6 +4,7 @@ import Player from "./Player";
 const Emojis = ({ setMood, mood }) => {
      const [songs, setSongs] = useState([]);
      const [count, setCount] = useState(0);
+     const [loading, setLoading] = useState(true);
 
      const getSongs = async (emotion) => {
           const res = await fetch(
@@ -11,6 +12,7 @@ const Emojis = ({ setMood, mood }) => {
           );
           const data = await res.json();
           setSongs(data.tracks.trackList);
+          setLoading(false);
      };
 
      const pickMood = (e) => {
@@ -32,7 +34,7 @@ const Emojis = ({ setMood, mood }) => {
           }
      };
 
-     console.log(mood);
+     // console.log(mood);
 
      return (
           <section>
@@ -85,6 +87,7 @@ const Emojis = ({ setMood, mood }) => {
                                         decrement={decrement}
                                         count={count}
                                         songs={songs}
+                                        loading={loading}
                                    />
                               ))}
                     </div>
