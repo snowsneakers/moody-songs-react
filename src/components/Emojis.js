@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import Player from "./Player";
+import Loading from "./Loading";
 
 const Emojis = ({ setMood, mood }) => {
      const [songs, setSongs] = useState([]);
      const [count, setCount] = useState(0);
-     const [loading, setLoading] = useState(true);
+     const [loading, setLoading] = useState(false);
 
      const getSongs = async (emotion) => {
+          setLoading(true);
           const res = await fetch(
                `https://moody-songs-react.herokuapp.com/${emotion}`
           );
@@ -75,7 +77,9 @@ const Emojis = ({ setMood, mood }) => {
                          😭
                     </li>
                </ul>
-               {mood.length ? (
+               {loading ? (
+                    <Loading />
+               ) : (
                     <div>
                          {songs
                               .filter((song, index) => index === count)
@@ -91,7 +95,8 @@ const Emojis = ({ setMood, mood }) => {
                                    />
                               ))}
                     </div>
-               ) : (
+               )}
+               {mood.length === 0 && (
                     <section>
                          <p className="font-semibold md:text-4xl text-center">
                               Welcome! Need a song to complement your mood? Pick
